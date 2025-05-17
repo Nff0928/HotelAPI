@@ -8,121 +8,59 @@
     {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Hotel Oasis - Inicio</title>
+    <title> HotelAPI - Inicio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/estilos_hotel.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<style>
-.montserrat {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
 
-a{
-    text-decoration: none;
-    color: black
-}
-
-.title_rooms{
-    text-align: center !important;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        background-color: #333;
-        color: #fff;
-        padding: 1rem 0;
-        text-align: center;
-    }
-    nav {
-        background-color: #444;
-        overflow: hidden;
-    }
-    nav a {
-        float: left;
-        display: block;
-        color: #fff;
-        text-align: center;
-        padding: 14px 20px;
-        text-decoration: none;
-    }
-    nav a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-    .hero {
-        background-image: url('Images/hero-hotel.jpg');
-        background-size: cover;
-        background-position: center;
-        height: 250px;
-        width: 250px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-shadow: 2px 2px 4px #000;
-    }
-    .hero h1 {
-        font-size: 3rem;
-    }
-    .content {
-        padding: 2rem;
-        padding-bottom: 0px;
-    }
-    .content h2 {
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-    .content p {
-        text-align: center;
-        font-size: 1.2rem;
-    }
-    .rooms {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .room-card {
-        background-color: #fff;
-        margin: 1rem;
-        padding: 1rem;
-        width: 300px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .room-card img {
-        width: 100%;
-        border-radius: 5px;
-    }
-    .room-card h3 {
-        margin-top: 0.5rem; 
-    }
-    footer {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 1rem 0;
-        position: relative;
-        width: 100%;
-        bottom: 0;
-    }
-</style>
 <body>
+    <br>
 <header>
-    <h1> Bienvenido al Hotel Oasis</h1>
+    <h1> Bienvenido al  HotelAPI</h1>
 </header>
+     <div class="btn-container">
+        <a href="/check_in" class="btn">Check In</a>
+        <a href="/check_out" class="btn">Check Out</a>
+        <a href="/mi_reserva" class="btn">Mi Reserva</a>
+    </div>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0" style="max-width: 100%">
+
+<nav class=" navbar navbar estilo fixed-top" style="background-color: #255, 255, 255; padding-left: 30px; padding-right: 30px; ">
+    <div class="container-fluid" style="padding-right: 40px;">
+        <a class="navbar-brand" style="color:white; padding: 1rem 1rem;"> HotelAPI</a>
+        <button class="navbar-toggler"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="color: white;">
+            <span class="navbar-toggler-icon" style="color: aliceblue;"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #000000; font-size: 25px;">HotelAPI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/iniciosesion}">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/registro/nuevo}">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
 
 
+
+</nav>
 <div class="content">
     <section id="inicio">
         <h2>Sobre Nosotros</h2>
-        <p>Disfruta de una experiencia inolvidable en Hotel Oasis, ofrecemos una experiencia única de relajación y confort, Wi-Fi gratuito en todas las áreas, distintos tipos de habitaciones y varios servicios. Estamos ubicados en el corazón de la ciudad, nuestro hotel es el lugar perfecto para descansar y disfrutar.</p>
+        <p>Disfruta de una experiencia inolvidable en  HotelAPI, ofrecemos una experiencia única de relajación y confort, Wi-Fi gratuito en todas las áreas, distintos tipos de habitaciones y varios servicios. Estamos ubicados en el corazón de la ciudad, nuestro hotel es el lugar perfecto para descansar y disfrutar.</p>
     </section>
 
 
@@ -153,31 +91,31 @@ body {
             </ul>
         </section>
     <section id="habitaciones">
-        <h2>Nuestras Habitaciones</h2>
-        <div class="rooms">
-            <div class="room-card">
-                <a href="/estandar" class="room-link">
+    <h2>Nuestras Habitaciones</h2>
+    <div class="rooms">
+        <div class="room-card">
+            <a href="/estandar" class="room-link">
                 <img src="{% static 'img/habitacion1.jpg' %}" alt="Habitación Estándar">
-                <h3 class="title_rooms">Habitación Estándar</h3>
+                <h3>Habitación Estándar</h3>
                 <p>Comodidad y sencillez para su estadía perfecta.</p>
             </a>
-            </div>
-            <div class="room-card">
-                <a href="/deluxe" class="room-link">
-                <img src="{% static 'img/habitacion2.jpg' %}"  alt="Habitación Deluxe">
-                <h3 class="title_rooms mt-5">Habitación Deluxe</h3>
+        </div>
+        <div class="room-card">
+            <a href="/deluxe" class="room-link">
+                <img src="{% static 'img/habitacion2.jpg' %}" alt="Habitación Deluxe">
+                <h3>Habitación Deluxe</h3>
                 <p>Amplias habitaciones con vista panorámica.</p>
             </a>
-            </div>
-            <div class="room-card">
-                <a href="/suite" class="room-link">
-                <img src="{% static 'img/habitacion3.jpg' %}"  alt="Suite">
-                <h3 class="title_rooms mt-5">Suite</h3>
+        </div>
+        <div class="room-card">
+            <a href="/suite" class="room-link">
+                <img src="{% static 'img/habitacion3.jpg' %}" alt="Suite">
+                <h3>Suite</h3>
                 <p>Lujo y elegancia en cada detalle.</p>
             </a>
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="politicas" class="policy-details mt-4">
         <h2>Políticas del Hotel</h2>
@@ -199,16 +137,18 @@ body {
             </li>
             <li>
                 <h3>Política de No Fumar</h3>
-                <p>El Hotel Oasis es un espacio libre de humo. Está prohibido fumar en las habitaciones y áreas públicas.
+                <p>El  HotelAPI es un espacio libre de humo. Está prohibido fumar en las habitaciones y áreas públicas.
                     Se aplicarán cargos de limpieza adicionales si se infringe esta política.</p>
             </li>
         </ul>
     </section>
 </div>
 <footer>
-    <p>&copy; 2024 Hotel Oasis. Todos los derechos reservados.
+    <p>&copy; 2024  HotelAPI. Todos los derechos reservados.
 </footer>
 
 </body>
+</body>
 </html>
+
 {% endblock %}

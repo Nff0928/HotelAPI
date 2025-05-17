@@ -144,6 +144,8 @@ def delete_task(request, task_id):
     
 def reserva_form(request):
     return render(request, 'reserva_form.html')
+def mi_reserva(request):
+    return render (request, 'mi_reserva.html')
 
 def contacto(request):
     nav_2 = 'true'
@@ -182,9 +184,6 @@ def contacto(request):
     #     return render(request, 'signup.html', {"form": UserCreationForm, "error": "Passwords did not match."})
 
 
-@csrf_exempt
-def validar_ocr(request):
-     return render(request, 'validar_ocr.html')
     
 def hotel_view(request):
     return render(request, 'portal.html')
@@ -353,50 +352,3 @@ def checkin(request):
 
 
 
-
-
-def procesar_cedulas(request):
-    if request.method == 'POST' and 'documento_adjunto' in request.FILES:
-        documento = request.FILES['documento_adjunto']
-        
-        try:
-            # Abrir la imagen
-            img = Image.open(documento)
-
-            # Extraer el texto usando OCR
-            texto_ocr = pytesseract.image_to_string(img)
-
-            # Limpiar el texto extraído
-            texto_ocr = re.sub(r'[^A-Za-z0-9\s\.\-:]', ' ', texto_ocr)  # Eliminar caracteres no alfanuméricos
-            texto_ocr = re.sub(r'\s+', ' ', texto_ocr).strip()
-
-            # Buscar el número de cédula (ID) usando una expresión regular más robusta
-            match = re.search(r'\b\d{1,3}(\.\d{3}){2,3}\b', texto_ocr)
-            if match:
-                cedula = match.group().replace('.', '')  # Limpiar la cédula
-            else:
-                cedula = None
-
-            # Buscar el nombre y apellido
-            nombre_apellido_match = re.search(r'([A-Z]+(?: [A-Z]+)*) PELLUIDOS ([A-Z]+(?: [A-Z]+)*)', texto_ocr)
-            if nombre_apellido_match:
-                apellido = nombre_apellido_match.group(1)
-                nombre = nombre_apellido_match.group(2)
-            else:
-                nombre = apellido = None
-
-            # Si no se encuentra la cédula o los datos, retornar un error
-            if not cedula or not nombre or not apellido:
-                return JsonResponse({'error': 'Cédula no encontrada o datos incompletos'}, status=404)
-
-            # Devolver los datos en formato JSON
-            return JsonResponse({
-                'id': cedula,
-                'nombre': nombre,
-                'apellido': apellido
-            })
-
-        except Exception as e:
-            return JsonResponse({'error': f'Error al procesar la imagen: {str(e)}'}, status=400)
-    
-    return JsonResponse({'error': 'No se subieron documentos'}, status=400)
